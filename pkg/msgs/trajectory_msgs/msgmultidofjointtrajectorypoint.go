@@ -4,8 +4,8 @@ package trajectory_msgs
 import (
 	"time"
 
-	"github.com/aler9/goroslib/pkg/msg"
-	"github.com/aler9/goroslib/pkg/msgs/geometry_msgs"
+	"github.com/ROBTTO/goroslib/pkg/msg"
+	"github.com/ROBTTO/goroslib/pkg/msgs/geometry_msgs"
 )
 
 type MultiDOFJointTrajectoryPoint struct {

@@ -2,8 +2,8 @@
 package control_msgs
 
 import (
-	"github.com/aler9/goroslib/pkg/msg"
-	"github.com/aler9/goroslib/pkg/msgs/trajectory_msgs"
+	"github.com/ROBTTO/goroslib/pkg/msg"
+	"github.com/ROBTTO/goroslib/pkg/msgs/trajectory_msgs"
 )
 
 type JointTrajectoryActionGoal struct {

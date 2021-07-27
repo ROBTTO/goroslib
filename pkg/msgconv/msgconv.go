@@ -243,7 +243,7 @@ func ParseMessageDefinition(goPkgName string, rosPkgName, name string, content s
 	}()
 
 	res.Imports = map[string]struct{}{
-		"github.com/aler9/goroslib/pkg/msg": {},
+		"github.com/ROBTTO/goroslib/pkg/msg": {},
 	}
 	for _, f := range res.Fields {
 		switch f.TypePkg {
@@ -253,7 +253,7 @@ func ParseMessageDefinition(goPkgName string, rosPkgName, name string, content s
 			res.Imports["time"] = struct{}{}
 
 		default:
-			res.Imports["github.com/aler9/goroslib/pkg/msgs/"+f.TypePkg] = struct{}{}
+			res.Imports["github.com/ROBTTO/goroslib/pkg/msgs/"+f.TypePkg] = struct{}{}
 		}
 	}
 

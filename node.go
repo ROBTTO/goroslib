@@ -2,14 +2,14 @@
 Package goroslib is a library in pure Go that allows to build clients (nodes)
 for the Robot Operating System (ROS).
 
-Basic example (more are available at https://github.com/aler9/goroslib/tree/master/examples):
+Basic example (more are available at https://github.com/ROBTTO/goroslib/tree/master/examples):
 
   package main
 
   import (
       "fmt"
-      "github.com/aler9/goroslib"
-      "github.com/aler9/goroslib/pkg/msgs/sensor_msgs"
+      "github.com/ROBTTO/goroslib"
+      "github.com/ROBTTO/goroslib/pkg/msgs/sensor_msgs"
   )
 
   func onMessage(msg *sensor_msgs.Imu) {
@@ -52,13 +52,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/aler9/goroslib/pkg/apimaster"
-	"github.com/aler9/goroslib/pkg/apiparam"
-	"github.com/aler9/goroslib/pkg/apislave"
-	"github.com/aler9/goroslib/pkg/msgs/rosgraph_msgs"
-	"github.com/aler9/goroslib/pkg/prototcp"
-	"github.com/aler9/goroslib/pkg/protoudp"
-	"github.com/aler9/goroslib/pkg/xmlrpc"
+	"github.com/ROBTTO/goroslib/pkg/apimaster"
+	"github.com/ROBTTO/goroslib/pkg/apiparam"
+	"github.com/ROBTTO/goroslib/pkg/apislave"
+	"github.com/ROBTTO/goroslib/pkg/msgs/rosgraph_msgs"
+	"github.com/ROBTTO/goroslib/pkg/prototcp"
+	"github.com/ROBTTO/goroslib/pkg/protoudp"
+	"github.com/ROBTTO/goroslib/pkg/xmlrpc"
 )
 
 type getPublicationsReq struct {

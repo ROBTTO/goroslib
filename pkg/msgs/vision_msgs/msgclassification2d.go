@@ -2,9 +2,9 @@
 package vision_msgs
 
 import (
-	"github.com/aler9/goroslib/pkg/msg"
-	"github.com/aler9/goroslib/pkg/msgs/sensor_msgs"
-	"github.com/aler9/goroslib/pkg/msgs/std_msgs"
+	"github.com/ROBTTO/goroslib/pkg/msg"
+	"github.com/ROBTTO/goroslib/pkg/msgs/sensor_msgs"
+	"github.com/ROBTTO/goroslib/pkg/msgs/std_msgs"
 )
 
 type Classification2D struct {

@@ -2,8 +2,8 @@
 package geographic_msgs
 
 import (
-	"github.com/aler9/goroslib/pkg/msg"
-	"github.com/aler9/goroslib/pkg/msgs/uuid_msgs"
+	"github.com/ROBTTO/goroslib/pkg/msg"
+	"github.com/ROBTTO/goroslib/pkg/msgs/uuid_msgs"
 )
 
 type GetGeoPathReq struct {

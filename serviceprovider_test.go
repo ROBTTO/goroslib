@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/aler9/goroslib/pkg/msgs/std_srvs"
+	"github.com/ROBTTO/goroslib/pkg/msgs/std_srvs"
 )
 
 func TestServiceProviderRegister(t *testing.T) {
