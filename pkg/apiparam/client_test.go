@@ -35,6 +35,9 @@ func TestClient(t *testing.T) {
 
 			case "mykey3":
 				return ResponseGetParamString{Code: 1, Res: "mystring"}
+
+			case "mykey4":
+				return ResponseGetParamDouble{Code: 1, Res: 1.3}
 			}
 
 		case "hasParam":
@@ -78,6 +81,12 @@ func TestClient(t *testing.T) {
 		res, err := c.GetParamString("mykey3")
 		require.NoError(t, err)
 		require.Equal(t, "mystring", res)
+	}()
+
+	func() {
+		res, err := c.GetParamDouble("mykey4")
+		require.NoError(t, err)
+		require.Equal(t, 1.3, res)
 	}()
 
 	func() {

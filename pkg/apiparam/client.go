@@ -99,6 +99,26 @@ func (c *Client) GetParamInt(key string) (int, error) {
 	return res.Res, nil
 }
 
+// GetParamDouble writes a getParam request and expects a int response.
+func (c *Client) GetParamDouble(key string) (float64, error) {
+	req := RequestGetParam{
+		CallerID: c.callerID,
+		Key:      key,
+	}
+	var res ResponseGetParamDouble
+
+	err := c.xc.Do("getParam", req, &res)
+	if err != nil {
+		return 0, err
+	}
+
+	if res.Code != 1 {
+		return 0, fmt.Errorf("server returned an error (%d): %s", res.Code, res.StatusMessage)
+	}
+
+	return res.Res, nil
+}
+
 // GetParamString writes a getParam request and expects a string response.
 func (c *Client) GetParamString(key string) (string, error) {
 	req := RequestGetParam{
@@ -187,6 +207,27 @@ func (c *Client) SetParamBool(key string, val bool) error {
 // SetParamInt writes a setParam request.
 func (c *Client) SetParamInt(key string, val int) error {
 	req := RequestParamSetInt{
+		CallerID: c.callerID,
+		Key:      key,
+		Val:      val,
+	}
+	var res ResponseSetParam
+
+	err := c.xc.Do("setParam", req, &res)
+	if err != nil {
+		return err
+	}
+
+	if res.Code != 1 {
+		return fmt.Errorf("server returned an error (%d): %s", res.Code, res.StatusMessage)
+	}
+
+	return nil
+}
+
+// SetParamDouble writes a setParam request.
+func (c *Client) SetParamDouble(key string, val float64) error {
+	req := RequestParamSetDouble{
 		CallerID: c.callerID,
 		Key:      key,
 		Val:      val,

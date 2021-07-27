@@ -48,6 +48,13 @@ type ResponseGetParamInt struct {
 	Res           int
 }
 
+// ResponseGetParamDouble is the response to a getParam request.
+type ResponseGetParamDouble struct {
+	Code          int
+	StatusMessage string
+	Res           float64
+}
+
 // ResponseGetParamString is the response to a getParam request.
 type ResponseGetParamString struct {
 	Code          int
@@ -93,6 +100,13 @@ type RequestParamSetInt struct {
 	CallerID string
 	Key      string
 	Val      int
+}
+
+// RequestParamSetDouble is a setParam request.
+type RequestParamSetDouble struct {
+	CallerID string
+	Key      string
+	Val      float64
 }
 
 // RequestParamSetString is a setParam request.
