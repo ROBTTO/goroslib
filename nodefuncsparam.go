@@ -27,7 +27,7 @@ func (n *Node) ParamGetInt(key string) (int, error) {
 	return res, nil
 }
 
-// ParamGetDouble returns an int parameter from the master.
+// ParamGetDouble returns an double parameter from the master.
 func (n *Node) ParamGetDouble(key string) (float64, error) {
 	res, err := n.apiParamClient.GetParamDouble(key)
 	if err != nil {
@@ -53,6 +53,11 @@ func (n *Node) ParamSetBool(key string, val bool) error {
 // ParamSetInt sets an int parameter in the master.
 func (n *Node) ParamSetInt(key string, val int) error {
 	return n.apiParamClient.SetParamInt(key, val)
+}
+
+// ParamSetDouble sets an double parameter in the master.
+func (n *Node) ParamSetDouble(key string, val float64) error {
+	return n.apiParamClient.SetParamDouble(key, val)
 }
 
 // ParamSetString sets a string parameter in the master.
