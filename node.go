@@ -126,6 +126,7 @@ type Node struct {
 	apiParamClient      *apiparam.Client
 	apiSlaveServer      *apislave.Server
 	apiSlaveServerURL   string
+	host                string
 	tcprosServer        *prototcp.Server
 	tcprosServerURL     string
 	udprosServer        *protoudp.Server
@@ -250,6 +251,7 @@ func NewNode(conf NodeConf) (*Node, error) {
 		ctxCancel:              ctxCancel,
 		masterAddr:             masterAddr,
 		nodeAddr:               nodeAddr,
+		host:                   conf.Host,
 		tcprosConns:            make(map[*prototcp.Conn]struct{}),
 		udprosSubPublishers:    make(map[*subscriberPublisher]struct{}),
 		subscribers:            make(map[string]*Subscriber),
