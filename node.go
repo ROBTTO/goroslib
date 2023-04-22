@@ -4,41 +4,40 @@ for the Robot Operating System (ROS).
 
 Basic example (more are available at https://github.com/ROBTTO/goroslib/tree/master/examples):
 
-  package main
+	package main
 
-  import (
-      "fmt"
-      "github.com/ROBTTO/goroslib"
-      "github.com/ROBTTO/goroslib/pkg/msgs/sensor_msgs"
-  )
+	import (
+	    "fmt"
+	    "github.com/ROBTTO/goroslib"
+	    "github.com/ROBTTO/goroslib/pkg/msgs/sensor_msgs"
+	)
 
-  func onMessage(msg *sensor_msgs.Imu) {
-      fmt.Printf("Incoming: %+v\n", msg)
-  }
+	func onMessage(msg *sensor_msgs.Imu) {
+	    fmt.Printf("Incoming: %+v\n", msg)
+	}
 
-  func main() {
-      n, err := goroslib.NewNode(goroslib.NodeConf{
-          Name:          "goroslib",
-          MasterAddress: "127.0.0.1:11311",
-      })
-      if err != nil {
-          panic(err)
-      }
-      defer n.Close()
+	func main() {
+	    n, err := goroslib.NewNode(goroslib.NodeConf{
+	        Name:          "goroslib",
+	        MasterAddress: "127.0.0.1:11311",
+	    })
+	    if err != nil {
+	        panic(err)
+	    }
+	    defer n.Close()
 
-      sub, err := goroslib.NewSubscriber(goroslib.SubscriberConf{
-          Node:     n,
-          Topic:    "test_topic",
-          Callback: onMessage,
-      })
-      if err != nil {
-          panic(err)
-      }
-      defer sub.Close()
+	    sub, err := goroslib.NewSubscriber(goroslib.SubscriberConf{
+	        Node:     n,
+	        Topic:    "test_topic",
+	        Callback: onMessage,
+	    })
+	    if err != nil {
+	        panic(err)
+	    }
+	    defer sub.Close()
 
-      select {}
-  }
-
+	    select {}
+	}
 */
 package goroslib
 
@@ -326,14 +325,14 @@ func NewNode(conf NodeConf) (*Node, error) {
 	if err != nil {
 		return nil, err
 	}
-	n.apiSlaveServerURL = xmlrpc.ServerURL(nodeAddr, n.apiSlaveServer.Port())
+	n.apiSlaveServerURL = xmlrpc.ServerURL(conf.Host, nodeAddr, n.apiSlaveServer.Port())
 
 	n.tcprosServer, err = prototcp.NewServer(":" + strconv.FormatInt(int64(conf.TcprosPort), 10))
 	if err != nil {
 		n.apiSlaveServer.Close()
 		return nil, err
 	}
-	n.tcprosServerURL = prototcp.ServerURL(nodeAddr, n.tcprosServer.Port())
+	n.tcprosServerURL = prototcp.ServerURL(conf.Host, nodeAddr, n.tcprosServer.Port())
 
 	n.udprosServer, err = protoudp.NewServer(":" + strconv.FormatInt(int64(conf.UdprosPort), 10))
 	if err != nil {

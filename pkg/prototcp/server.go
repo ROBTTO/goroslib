@@ -3,18 +3,16 @@ package prototcp
 import (
 	"net"
 	"net/url"
+	"strconv"
 )
 
 // ServerURL returns the URL of a PROTOTCP server.
-func ServerURL(address *net.TCPAddr, port int) string {
-	return (&url.URL{
-		Scheme: "rosrpc",
-		Host: (&net.TCPAddr{
-			IP:   address.IP,
-			Port: port,
-			Zone: address.Zone,
-		}).String(),
-	}).String()
+func ServerURL(host string, address *net.TCPAddr, port int) string {
+	hostStr := net.JoinHostPort(host, strconv.Itoa(port))
+	if address.Zone != "" {
+		hostStr = net.JoinHostPort(host+"%"+address.Zone, strconv.Itoa(port))
+	}
+	return (&url.URL{Scheme: "rosrpc", Host: hostStr}).String()
 }
 
 // Server is a TCPROS server.

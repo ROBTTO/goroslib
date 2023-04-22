@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 	"net/url"
+	"strconv"
 	"sync"
 )
 
@@ -14,15 +15,12 @@ import (
 type ErrorRes struct{}
 
 // ServerURL returns a XMLRPC server url.
-func ServerURL(address *net.TCPAddr, port int) string {
-	return (&url.URL{
-		Scheme: "http",
-		Host: (&net.TCPAddr{
-			IP:   address.IP,
-			Port: port,
-			Zone: address.Zone,
-		}).String(),
-	}).String()
+func ServerURL(host string, address *net.TCPAddr, port int) string {
+	hostStr := net.JoinHostPort(host, strconv.Itoa(port))
+	if address.Zone != "" {
+		hostStr = net.JoinHostPort(host+"%"+address.Zone, strconv.Itoa(port))
+	}
+	return (&url.URL{Scheme: "http", Host: hostStr}).String()
 }
 
 // Server is a XML-RPC server.
