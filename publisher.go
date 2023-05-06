@@ -398,6 +398,10 @@ outer:
 
 // Write writes a message into the publisher.
 func (p *Publisher) Write(msg interface{}) {
+	if msg == nil {
+		p.lastMessage = nil
+		return
+	}
 	if reflect.TypeOf(msg) != reflect.TypeOf(p.conf.Msg) {
 		panic("wrong message type")
 	}
